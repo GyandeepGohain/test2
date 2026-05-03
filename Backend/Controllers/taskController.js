@@ -83,12 +83,22 @@ const updateTaskStatus = async (req, res) => {
 
 const deleteTask = async (req, res) => {
   try {
-    const task = await Task.findByIdAndDelete(req.params.id);
-    if (!task) return res.status(404).json({ message: "Task not found" });
-    res.status(200).json({ message: "Task deleted successfully" });
+    const task = await Task.findById(req.params.id)
+    if (!task) return res.status(404).json({ message: "Task not found" })
+
+    // Dept head can only delete tasks in their own department
+    if (req.user.role === 'dept_head' && 
+        task.department !== req.user.department) {
+      return res.status(403).json({
+        message: "Access denied. You can only delete tasks in your department.",
+      })
+    }
+
+    await Task.findByIdAndDelete(req.params.id)
+    res.status(200).json({ message: "Task deleted successfully" })
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message })
   }
-};
+}
 
 module.exports = { getTasks, createTask, updateTaskStatus, deleteTask };

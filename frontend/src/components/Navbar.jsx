@@ -1,6 +1,6 @@
-import { useAuth, MOCK_USERS } from '../context/AuthContext'
+import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import UserSwitcher from './UserSwitcher'
 
 const roleColors = {
   org_admin: '#e74c3c',
@@ -15,20 +15,8 @@ const roleLabels = {
 }
 
 const Navbar = () => {
-  const { user, switchUser, logout } = useAuth()
+  const { user, logout } = useAuth()
   const navigate = useNavigate()
-
-  const handleSwitch = async (e) => {
-    const email = e.target.value
-    if (!email) return
-    const result = await switchUser(email)
-    if (result.success) {
-      navigate('/')
-      toast.success(`Switched to ${email.split('@')[0]}`)
-    } else {
-      toast.error(result.message)
-    }
-  }
 
   const handleLogout = () => {
     logout()
@@ -47,29 +35,9 @@ const Navbar = () => {
       <h2 style={{ margin: 0, fontSize: '18px' }}>Task Manager</h2>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        {/* User Switcher */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <label style={{ fontSize: '13px', color: '#bdc3c7' }}>
-            Switch User:
-          </label>
-          <select
-            onChange={handleSwitch}
-            value={user?.email || ''}
-            style={{
-              padding: '6px 10px',
-              borderRadius: '4px',
-              border: 'none',
-              fontSize: '13px',
-              cursor: 'pointer',
-            }}
-          >
-            {MOCK_USERS.map((u) => (
-              <option key={u.email} value={u.email}>
-                {u.name} ({roleLabels[u.role]} - {u.department})
-              </option>
-            ))}
-          </select>
-        </div>
+
+        {/* User Switcher Component */}
+        <UserSwitcher />
 
         {/* Current User Badge */}
         <div style={{
