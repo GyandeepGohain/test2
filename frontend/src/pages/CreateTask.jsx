@@ -20,7 +20,6 @@ const CreateTask = () => {
     const fetchUsers = async () => {
       try {
         const { data } = await API.get('/users')
-        // Only show members from same department
         const members = data.filter(
           u => u.department === user.department && u.role === 'member'
         )

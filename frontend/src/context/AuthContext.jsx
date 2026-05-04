@@ -2,8 +2,6 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import API from '../api/axios'
 
 const AuthContext = createContext()
-
-// Mock users for the switcher
 export const MOCK_USERS = [
   { name: 'Alice', email: 'alice@test.com', role: 'org_admin', department: 'engineering' },
   { name: 'Bob', email: 'bob@test.com', role: 'dept_head', department: 'engineering' },

@@ -37,17 +37,28 @@ const Login = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: '#f0f2f5',
+      backgroundImage: 'url(https://i.pinimg.com/474x/c8/f7/bd/c8f7bdd3e52c315dafb9641f92672498.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      position: 'relative',
     }}>
       <div style={{
-        backgroundColor: 'white',
+        position: 'absolute',
+        inset: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.45)',
+      }} />
+      <div style={{
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
         padding: '40px',
         borderRadius: '12px',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
         width: '500px',
+        position: 'relative',
+        zIndex: 1,
       }}>
         <h1 style={{ textAlign: 'center', color: '#2c3e50', marginBottom: '8px' }}>
           Task Manager

@@ -3,7 +3,6 @@ const Task = require("../models/Task");
 
 const seedData = async (req, res) => {
   try {
-    // Clear existing data
     await User.deleteMany({});
     await Task.deleteMany({});
 

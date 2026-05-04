@@ -113,8 +113,6 @@ const Users = () => {
                   </span>
                 </td>
                 <td style={{ padding: '14px 20px', color: '#2c3e50' }}>{u.department}</td>
-
-                {/* Dept Head can change roles and departments */}
                 {user?.role === 'dept_head' && (
                   <td style={{ padding: '14px 20px' }}>
                     {u._id !== user._id ? (

@@ -85,8 +85,6 @@ const deleteTask = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id)
     if (!task) return res.status(404).json({ message: "Task not found" })
-
-    // Dept head can only delete tasks in their own department
     if (req.user.role === 'dept_head' && 
         task.department !== req.user.department) {
       return res.status(403).json({
@@ -101,4 +99,46 @@ const deleteTask = async (req, res) => {
   }
 }
 
-module.exports = { getTasks, createTask, updateTaskStatus, deleteTask };
+const getDashboardData = async (req, res) => {
+  try {
+    let filter = {}
+    if (req.user.role === 'org_admin') filter = {}
+    else if (req.user.role === 'dept_head') filter = { department: req.user.department }
+    else filter = { assignedTo: req.user._id }
+
+    const tasks = await Task.find(filter).populate('assignedTo', 'name email')
+
+    const total = tasks.length
+    const todo = tasks.filter(t => t.status === 'todo').length
+    const inProgress = tasks.filter(t => t.status === 'in_progress').length
+    const completed = tasks.filter(t => t.status === 'completed').length
+
+    const deptCounts = {}
+    tasks.forEach(t => {
+      deptCounts[t.department] = (deptCounts[t.department] || 0) + 1
+    })
+    const barChartData = Object.entries(deptCounts).map(([dept, count]) => ({
+      department: dept,
+      count,
+    }))
+
+    const recentTasks = await Task.find(filter)
+      .populate('assignedTo', 'name email')
+      .sort({ createdAt: -1 })
+      .limit(5)
+
+    res.status(200).json({
+      stats: { total, todo, inProgress, completed },
+      pieChartData: [
+        { status: 'Todo', count: todo },
+        { status: 'In Progress', count: inProgress },
+        { status: 'Completed', count: completed },
+      ],
+      barChartData,
+      recentTasks,
+    })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+module.exports = { getTasks, createTask, updateTaskStatus, deleteTask, getDashboardData }

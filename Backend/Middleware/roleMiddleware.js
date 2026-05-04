@@ -8,8 +8,6 @@ const authorizeRoles = (...roles) => {
     next();
   };
 };
-
-// Check if user belongs to same department as resource
 const checkDepartment = (req, res, next) => {
   if (req.user.role === "org_admin") return next();
   if (req.user.department !== req.resource?.department) {

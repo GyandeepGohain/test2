@@ -4,11 +4,17 @@ import Sidebar from './Sidebar'
 
 const Layout = () => {
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <Sidebar />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <Navbar />
-        <main style={{ padding: '24px', flex: 1, backgroundColor: '#f5f5f5' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Navbar />
+
+      <div style={{ display: 'flex', flex: 1 }}>
+        <div className="desktop-sidebar" style={{ flexShrink: 0 }}>
+          <Sidebar />
+        </div>
+        <main style={{
+          flex: 1, padding: '24px',
+          backgroundColor: '#f0f2f5', minWidth: 0,
+        }}>
           <Outlet />
         </main>
       </div>

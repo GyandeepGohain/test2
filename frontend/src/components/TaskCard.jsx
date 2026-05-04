@@ -26,8 +26,6 @@ const TaskCard = ({ task, onStatusUpdate, onDelete }) => {
       borderLeft: `4px solid ${statusColors[task.status]}`,
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        
-        {/* Left side - Task info */}
         <div style={{ flex: 1 }}>
           <h3 style={{ margin: '0 0 8px', color: '#2c3e50' }}>{task.title}</h3>
           {task.description && (
@@ -44,11 +42,7 @@ const TaskCard = ({ task, onStatusUpdate, onDelete }) => {
             )}
           </div>
         </div>
-
-        {/* Right side - Actions */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '10px', marginLeft: '16px' }}>
-          
-          {/* Status Badge */}
           <span style={{
             backgroundColor: statusColors[task.status],
             color: 'white',
@@ -61,8 +55,6 @@ const TaskCard = ({ task, onStatusUpdate, onDelete }) => {
           }}>
             {task.status?.replace('_', ' ')}
           </span>
-
-          {/* Status Update Dropdown */}
           {canUpdateStatus && (
             <select
               value={task.status}
@@ -80,8 +72,6 @@ const TaskCard = ({ task, onStatusUpdate, onDelete }) => {
               <option value="completed">Completed</option>
             </select>
           )}
-
-          {/* Delete Button */}
           {canDelete && (
             <button
               onClick={() => onDelete(task._id)}
