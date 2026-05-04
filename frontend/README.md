@@ -4,7 +4,7 @@ A full-stack Task Management application with Role-Based Access Control (RBAC), 
 
 ---
 
-## 🚀 Tech Stack
+# Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -16,7 +16,7 @@ A full-stack Task Management application with Role-Based Access Control (RBAC), 
 
 ---
 
-## 📁 Project Structure
+# Project Structure
 
 ```
 Task Manager/
@@ -73,7 +73,7 @@ Task Manager/
 
 ---
 
-## ⚙️ Setup Instructions
+# Setup Instructions
 
 ### Prerequisites
 
@@ -125,8 +125,8 @@ npm run dev
 
 You should see:
 ```
-🚀 Server running on port 5001
-✅ MongoDB Connected: your-cluster.mongodb.net
+ Server running on port 5001
+ MongoDB Connected: your-cluster.mongodb.net
 ```
 
 ---
@@ -147,7 +147,7 @@ This creates all 6 users and 3 tasks from the assignment spec. You should see:
 
 ```json
 {
-  "message": "✅ Seed data created successfully!",
+  "message": " Seed data created successfully!",
   "users": [
     { "name": "Alice", "role": "org_admin", "department": "engineering", "password": "123456" },
     { "name": "Bob", "role": "dept_head", "department": "engineering", "password": "123456" },
@@ -184,7 +184,7 @@ The app will be available at: **http://localhost:3000**
 
 ---
 
-## 👥 Seed Users & Credentials
+## Seed Users & Credentials
 
 All users have the password: **`123456`**
 
@@ -199,7 +199,7 @@ All users have the password: **`123456`**
 
 ---
 
-## 🔐 Role Permissions
+## Role Permissions
 
 | Action | Org Admin | Dept Head | Member |
 |--------|-----------|-----------|--------|
@@ -216,7 +216,7 @@ All users have the password: **`123456`**
 
 ---
 
-## 🌐 API Endpoints
+## API Endpoints
 
 ### Auth
 | Method | Endpoint | Access | Description |
@@ -248,7 +248,7 @@ All users have the password: **`123456`**
 
 ---
 
-## 🔒 Authorization Examples
+## Authorization Examples
 
 All protected routes return `403 Forbidden` with a meaningful message when access is denied:
 
@@ -272,7 +272,7 @@ All protected routes return `403 Forbidden` with a meaningful message when acces
 
 ---
 
-## 📋 Assumptions Made
+## Assumptions Made
 
 1. **Mock Login via Switcher** — Authentication uses a user-switcher dropdown on the login page and navbar. All users share the same password (`123456`) since this is a mock/demo environment, not a real-world auth system.
 
@@ -292,7 +292,7 @@ All protected routes return `403 Forbidden` with a meaningful message when acces
 
 ---
 
-## ⚠️ Known Limitations & Shortcuts
+## Known Limitations & Shortcuts
 
 1. **No Password Hashing on Seed** — The seed endpoint creates users with plain-text passwords that are then hashed by the Mongoose pre-save hook. This is fine for development but the seed endpoint should be removed or protected in production.
 
@@ -312,7 +312,7 @@ All protected routes return `403 Forbidden` with a meaningful message when acces
 
 ---
 
-## 🛠️ Environment Variables
+## Environment Variables
 
 | Variable | Description | Example |
 |----------|-------------|---------|
@@ -324,7 +324,7 @@ All protected routes return `403 Forbidden` with a meaningful message when acces
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 ### Backend
 ```json
@@ -354,7 +354,7 @@ All protected routes return `403 Forbidden` with a meaningful message when acces
 
 ---
 
-## 📸 Features Overview
+## Features Overview
 
 - **Mock User Switcher** — Switch between any of the 6 seed users instantly from the login page or navbar
 - **Role-Based Dashboard** — Stats cards, pie chart (status distribution), bar chart (dept breakdown), recent tasks table
